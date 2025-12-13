@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:travel_app/Model/TravelModel.dart';
 
 void main() {
@@ -46,6 +45,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  double imageSize = 55;
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +75,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ),
                     ),
-                    
-
-
-
-
-                  //Head Icons
+                     //Head Icons
                   Positioned(
                     top: 0,
                     left: 0,
@@ -120,6 +115,42 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                   ),
+                  
+                    ListView.builder(
+                      
+                      itemCount: travelList.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: InkWell(
+                                  onTap: () {
+                                    
+                                  },
+                                  child: AnimatedContainer(
+                                    width: imageSize,
+                                    height: imageSize,
+                                    duration: const Duration(milliseconds: 500),
+                                    child:Image(
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(travelList[index].image),
+                                    ),
+                                    
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+
+
+
+                 
                 ],
               ),
             ),
@@ -127,7 +158,7 @@ class _MainPageState extends State<MainPage> {
               child: Container(
                 width: double.infinity,
                 height: size.height / 1.8,
-                color: const Color.fromARGB(255, 14, 215, 178),
+                color: const Color.fromARGB(255, 3, 246, 48),
               ),
             ),
           ],
