@@ -60,22 +60,22 @@ class _MainPageState extends State<MainPage> {
               color: Colors.red,
               child: Stack(
                 children: [
-                    Container(
-                      width: double.infinity,
-                      height: size.height / 2.1,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 207, 19, 216),
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(60), 
-                          bottomRight: Radius.circular(60)
-                        ),
-                        image: DecorationImage(
-                          image: NetworkImage(travelList[_selectedIndex].image),  
-                          fit: BoxFit.cover,
-                        ),
+                  Container(
+                    width: double.infinity,
+                    height: size.height / 2.1,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 207, 19, 216),
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(60),
+                        bottomRight: Radius.circular(60),
+                      ),
+                      image: DecorationImage(
+                        image: NetworkImage(travelList[_selectedIndex].image),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                     //Head Icons
+                  ),
+                  //Head Icons
                   Positioned(
                     top: 0,
                     left: 0,
@@ -115,42 +115,21 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                   ),
-                  
-                    ListView.builder(
-                      
-                      itemCount: travelList.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: InkWell(
-                                  onTap: () {
-                                    
-                                  },
-                                  child: AnimatedContainer(
-                                    width: imageSize,
-                                    height: imageSize,
-                                    duration: const Duration(milliseconds: 500),
-                                    child:Image(
-                                      fit: BoxFit.fill,
-                                      image: NetworkImage(travelList[index].image),
-                                    ),
-                                    
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
+
+                  Positioned(
+                    right: 0,
+                    top: 70,
+                    child: SizedBox(
+                      width: 90,
+                      height: double.maxFinite,
+                      child: ListView.builder(
+                        itemCount: travelList.length,
+                        itemBuilder: (context, index) {
+                          return imageItem(index);
+                        },
+                      ),
                     ),
-
-
-
-                 
+                  ),
                 ],
               ),
             ),
@@ -164,6 +143,36 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget imageItem(int index) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            onTap: () {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            child: AnimatedContainer(
+              decoration: BoxDecoration(
+                border: Border.all(color: _selectedIndex == index ? Colors.white : const Color.fromARGB(0, 255, 255, 255), width: 2),
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: NetworkImage(travelList[index].image),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              width: _selectedIndex == index ? imageSize + 15 : imageSize,
+              height: _selectedIndex == index ? imageSize + 15 : imageSize,
+              duration: const Duration(milliseconds: 300),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
