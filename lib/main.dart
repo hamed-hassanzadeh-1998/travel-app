@@ -9,28 +9,12 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: MainPage(),
     );
@@ -57,9 +41,10 @@ class _MainPageState extends State<MainPage> {
             Container(
               width: double.infinity,
               height: size.height / 1.8,
-              color: Colors.red,
+              color: const Color.fromARGB(255, 255, 255, 255),
               child: Stack(
                 children: [
+                  //background image
                   Container(
                     width: double.infinity,
                     height: size.height / 2.1,
@@ -86,8 +71,8 @@ class _MainPageState extends State<MainPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: 50,
-                            height: 50,
+                            width: 30,
+                            height: 30,
                             decoration: const BoxDecoration(
                               color: Color.fromARGB(112, 255, 255, 255),
                               shape: BoxShape.circle,
@@ -99,8 +84,8 @@ class _MainPageState extends State<MainPage> {
                             ),
                           ),
                           Container(
-                            width: 50,
-                            height: 50,
+                            width: 30,
+                            height: 30,
                             decoration: const BoxDecoration(
                               color: Color.fromARGB(112, 255, 255, 255),
                               shape: BoxShape.circle,
@@ -115,7 +100,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                   ),
-
+                  //Image List
                   Positioned(
                     right: 0,
                     top: 70,
@@ -130,6 +115,25 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                   ),
+
+                  //name & place
+                  Positioned(
+                    bottom: size.height/9.5,
+                    left: size.width/9,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(travelList[_selectedIndex].name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Icon(CupertinoIcons.placemark, size: 16, color: Colors.white),
+                            Text(travelList[_selectedIndex].location, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500,color: Colors.white)),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
