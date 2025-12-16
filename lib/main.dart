@@ -100,7 +100,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                   ),
-                  //Image List
+                 //Image List
                   Positioned(
                     right: 0,
                     top: 70,
@@ -115,7 +115,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                   ),
-
+ 
                   //name & place
                   Positioned(
                     bottom: size.height/9.5,
@@ -141,7 +141,79 @@ class _MainPageState extends State<MainPage> {
               child: Container(
                 width: double.infinity,
                 height: size.height / 1.8,
-                color: const Color.fromARGB(255, 3, 246, 48),
+                color: const Color.fromARGB(255, 255, 255, 255),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Card(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(color: Color.fromARGB(60, 0, 0, 0), width: 1),
+                          ),
+
+                          child:Container(
+                            width: 80,
+                            height: 80,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text('Distance'),
+                                Text(travelList[_selectedIndex].distance  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Card(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(color: Color.fromARGB(60, 0, 0, 0), width: 1),
+                          ),
+
+                          child:Container(
+                            width: 80,
+                            height: 80,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text('Temp'),
+                                Text(travelList[_selectedIndex].temp  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Card(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(color: Color.fromARGB(60, 0, 0, 0), width: 1),
+                          ),
+
+                          child:Container(
+                            width: 80,
+                            height: 80,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text('Rating'),
+                                Text(travelList[_selectedIndex].rating  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        
+                      ],
+                    ),
+                    Row(),
+                    Row(),
+                  ],
+                ),
               ),
             ),
           ],
