@@ -30,11 +30,12 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-  double imageSize = 55;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final double imageSize = size.width * 0.14;
+    final double cardSize = size.width * 0.22;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,14 +43,14 @@ class _MainPageState extends State<MainPage> {
             children: [
               Container(
                 width: size.width,
-                height: size.height / 1.8,
+                height: size.height * 0.50,
                 color: const Color.fromARGB(255, 255, 255, 255),
                 child: Stack(
                   children: [
                     //background image
                     Container(
                       width: double.infinity,
-                      height: size.height / 2.1,
+                      height: size.height * 0.42,
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 207, 19, 216),
                         borderRadius: const BorderRadius.only(
@@ -107,12 +108,12 @@ class _MainPageState extends State<MainPage> {
                       right: 0,
                       top: 70,
                       child: SizedBox(
-                        width: 90,
-                        height: size.height/1.8,
+                        width: size.width * 0.22,
+                        height: size.height * 0.35,
                         child: ListView.builder(
                           itemCount: travelList.length,
                           itemBuilder: (context, index) {
-                            return imageItem(index);
+                            return imageItem(index, imageSize);
                           },
                         ),
                       ),
@@ -159,7 +160,6 @@ class _MainPageState extends State<MainPage> {
               ),
               Container(
                 width: double.infinity,
-                height: size.height / 1.8,
                 color: const Color.fromARGB(255, 255, 255, 255),
                 child: Column(
                   children: [
@@ -176,10 +176,9 @@ class _MainPageState extends State<MainPage> {
                               width: 1,
                             ),
                           ),
-
                           child: Container(
-                            width: 80,
-                            height: 80,
+                            width: cardSize,
+                            height: cardSize,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -199,10 +198,9 @@ class _MainPageState extends State<MainPage> {
                               width: 1,
                             ),
                           ),
-
                           child: Container(
-                            width: 80,
-                            height: 80,
+                            width: cardSize,
+                            height: cardSize,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -222,10 +220,9 @@ class _MainPageState extends State<MainPage> {
                               width: 1,
                             ),
                           ),
-
                           child: Container(
-                            width: 80,
-                            height: 80,
+                            width: cardSize,
+                            height: cardSize,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -278,14 +275,13 @@ class _MainPageState extends State<MainPage> {
 
                             ),
                             Container(
-                              width: 100,
-                              height: 100,
+                              width: 60,
+                              height: 60,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color.fromARGB(255, 0 , 0, 0),
-                              
+                                color: Color.fromARGB(255, 0, 0, 0),
                               ),
-                               child: Icon(CupertinoIcons.arrow_right,color: Colors.white,)
+                              child: Icon(CupertinoIcons.arrow_right, color: Colors.white),
                             )
                             ],
                           )
@@ -302,7 +298,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget imageItem(int index) {
+  Widget imageItem(int index, double imageSize) {
     return Column(
       children: [
         Padding(
@@ -327,8 +323,8 @@ class _MainPageState extends State<MainPage> {
                   fit: BoxFit.cover,
                 ),
               ),
-              width: _selectedIndex == index ? imageSize + 15 : imageSize,
-              height: _selectedIndex == index ? imageSize + 15 : imageSize,
+              width: _selectedIndex == index ? imageSize * 1.25 : imageSize,
+              height: _selectedIndex == index ? imageSize * 1.25 : imageSize,
               duration: const Duration(milliseconds: 300),
             ),
           ),
